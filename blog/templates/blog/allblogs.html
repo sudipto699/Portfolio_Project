@@ -1,7 +1,6 @@
 
 <!doctype html>
 <html lang="en">
-
 <head>
   {% load static %}
   <meta charset="utf-8">
@@ -9,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v3.8.6">
-  <title>CulpritYT</title>
+  <title>Culprit's Blog</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
@@ -28,20 +27,20 @@
 
 
   <style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
-  }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
   </style>
   <!-- Custom styles for this template -->
   <link href="album.css" rel="stylesheet">
@@ -58,45 +57,31 @@
           <a class="nav-item nav-link" href="https://www.instagram.com/freaky_sudipto/">Instagram</a>
           <a class="nav-item nav-link" href="https://twitter.com/iam_sudipto00">Twitter</a>
           <a class="nav-item nav-link" href="{% static 'CV_2017.doc.docx' %}">Resume</a>
-          <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+          <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
         </div>
       </div>
     </nav>
   </header>
 
   <main role="main">
+    <div class='container'>
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1>Hi, This is Culprit</h1>
-        <p class="lead text-muted">Lets Play Bold.</p>
-        <p>
-          <a href="mailto:ghoshsudipto699@gmail.com" class="btn btn-primary my-2">Mail Me</a>
-        </p>
-        <img src={% static '61090.jpg' %} height=300, width=500 />
-      </div>
-    </section>
+      <h1 class = 'text-center pt-3'>Welcome to next Blog</h1>
+      <br />
+      <br />
+      <h2>Latest Posts!</h2>
+      <hr />
 
-    <div class="album py-5 bg-light">
-      <div class="container">
+      {% for blog in blogs.all %}
+      <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+      {{ blog.pub_date_pretty }}
+      <br />
+      <img class="img-fluid" src="{{ blog.image.url }}" height=150 width=190 />
+      <p>{{ blog.summary }}<p>
+      <br />
+      {% endfor %}
 
-        <div class="row">
-
-          {% for job in Jobs.all %}
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img class="card-img-top" src="{{ job.image.url }}" />
-              <div class="card-body">
-                <p class="card-text">{{ job.summary }}</p>
-
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
     </div>
-
   </main>
 
   <footer class="text-muted">
